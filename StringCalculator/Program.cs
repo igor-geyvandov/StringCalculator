@@ -2,11 +2,10 @@
 using StringCalculator;
 public class Program
 {
+    private const int MAX_NUM_OF_VALUES_ALLOWED = 2;
+    private const string VALUE_DELIMITER = ",";
     public static void Main(string[] args)
     {
-        const int MAX_NUM_OF_VALUES_ALLOWED = 2;
-        const string VALUE_DELIMITER = ",";
-
         var serviceProvider = new ServiceCollection()
             .AddSingleton<IParsingService, ParsingService>()
             .AddSingleton<ICalculatorService, CalculatorService>()

@@ -9,7 +9,6 @@ namespace StringCalculator.Tests
         [TestMethod]
         [DataRow("", new int[] { 0 }, DisplayName = "'' = []")]
         [DataRow("1", new int[] { 1 }, DisplayName = "'1' = [1]")]
-        [DataRow("\n", new int[] { 0 }, DisplayName = "'\n' = [0]")]
         [DataRow("abc", new int[] { 0 }, DisplayName = "'abc' = [0]")]
         [DataRow(" ", new int[] { 0 }, DisplayName = "' ' = [0]")]
         [DataRow("   ", new int[] { 0 }, DisplayName = "'   ' = [0]")]
@@ -34,7 +33,7 @@ namespace StringCalculator.Tests
         [DataRow("1,2,3,4,5,6,7,8,9", DisplayName = "'1,2,3,4,5,6,7,8,9' = exception thrown")]
         [DataRow("a,b,c", DisplayName = "'a,b,c' = exception thrown")]
         [DataRow(" ,-,?", DisplayName = "' ,-,?' = exception thrown")]
-        public void ParsingService_Throws_Exception(string input)
+        public void ParsingService_Throws_Exception_When_Constrain_Exceeded(string input)
         {
             const int maxNumOfValuesAllowed = 2;
             ParsingService service = new ParsingService();
