@@ -16,16 +16,24 @@ public class Program
 
         if (parsingService != null && calculatorService != null)
         {
-            Console.WriteLine("Hello, I am a calculator that only supports an Add operation given a single formatted string :)");            
+            Console.WriteLine("Hello, I am a calculator that only supports an Add operation given a single formatted string :)");
             while (true)
             {
                 Console.WriteLine(Environment.NewLine + $"Enter up to {MAX_NUM_OF_VALUES_ALLOWED} numbers using {string.Join(" or ", VALUE_DELIMITERS)} delimiters...");
                 string? input = Console.ReadLine();
                 if (input != null)
-                {              
-                    int[] intValues = parsingService.ParseInput(input, VALUE_DELIMITERS, MAX_NUM_OF_VALUES_ALLOWED);
-                    int result = calculatorService.AddNumbers(intValues);
-                    Console.WriteLine($"{string.Join(" + ", intValues)} = {result}");
+                {
+                    try
+                    {
+                        int[] intValues = parsingService.ParseInput(input, VALUE_DELIMITERS, MAX_NUM_OF_VALUES_ALLOWED);
+                        int result = calculatorService.AddNumbers(intValues);
+                        Console.WriteLine($"{string.Join(" + ", intValues)} = {result}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Exception caught: " + ex.Message);
+                        break;
+                    }
                 }
             }
         }
