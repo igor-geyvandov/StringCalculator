@@ -20,11 +20,13 @@ namespace StringCalculator.Tests
         [DataRow("1,a", new int[] { 1, 0 }, DisplayName = "'1,a' = [1,0]")]
         [DataRow("1,aaa", new int[] { 1, 0 }, DisplayName = "'1,aaa' = [1,0]")]
         [DataRow("1,???", new int[] { 1, 0 }, DisplayName = "'1,???' = [1, 0]")]
+        [DataRow("1\n2", new int[] { 1, 2 }, DisplayName = "'1\n2' = [1, 2]")]
         public void ParsingService_Returns_Numbers_With_Constrain(string input, int[] expected)
         {
-            const int maxNumOfValuesAllowed = 2;
+            int maxNumOfValuesAllowed = 2;
+            char[] delimiters = new char[] { ',', '\n' };
             ParsingService service = new ParsingService();
-            CollectionAssert.AreEqual(expected, service.ParseInput(input, maxNumOfValuesAllowed));
+            CollectionAssert.AreEqual(expected, service.ParseInput(input, delimiters, maxNumOfValuesAllowed));
         }
 
         [TestMethod]
@@ -35,19 +37,23 @@ namespace StringCalculator.Tests
         public void ParsingService_Throws_Exception_When_Constrain_Exceeded(string input)
         {
             const int maxNumOfValuesAllowed = 2;
+            char[] delimiters = new char[] { ',', '\n' };
             ParsingService service = new ParsingService();
-            Assert.ThrowsException<Exception>(() => service.ParseInput(input, maxNumOfValuesAllowed));
+            Assert.ThrowsException<Exception>(() => service.ParseInput(input, delimiters, maxNumOfValuesAllowed));
         }
 
         [TestMethod]
         [DataRow("1,2,3,4", new int[] { 1,2,3,4 }, DisplayName = "'1,2,3,4' = [1,2,3,4]")]
         [DataRow("1,2,3,4,5,6,7,8,9,10", new int[] { 1,2,3,4,5,6,7,8,9,10 }, DisplayName = "'1,2,3,4,5,6,7,8,9,10' = [1,2,3,4,5,6,7,8,9,10]")]
-        //[DataRow("a,b,c", new int[] { 0,0,0 }, DisplayName = "'a,b,c' = [0,0,0]")]
-        //[DataRow(" ,-,?", new int[] { 0,0,0 }, DisplayName = "' ,-,?' = [0,0,0]")]
+        [DataRow("1,2,a,4,5,6,7,$,9,10", new int[] { 1, 2, 0, 4, 5, 6, 7, 0, 9, 10 }, DisplayName = "'1,2,a,4,5,6,7,$,9,10' = [1,2,0,4,5,6,7,0,9,10]")]
+        [DataRow("1\n2,3", new int[] { 1, 2, 3 }, DisplayName = "'1\n2,3' = [1, 2, 3]")]
+        [DataRow("1\n2,3,4\n5", new int[] { 1, 2, 3, 4, 5 }, DisplayName = "'1\n2,3,4\n5' = [1, 2, 3, 4, 5]")]
         public void ParsingService_Returns_Numbers_Without_Constrain(string input, int[] expected)
         {
+            const int maxNumOfValuesAllowed = int.MaxValue;
+            char[] delimiters = new char[] { ',', '\n' };
             ParsingService service = new ParsingService();
-            CollectionAssert.AreEqual(expected, service.ParseInput(input));
+            CollectionAssert.AreEqual(expected, service.ParseInput(input, delimiters, maxNumOfValuesAllowed));
         }
     }
 }
