@@ -16,7 +16,7 @@ namespace StringCalculator.Tests
         [DataRow(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }, 78, DisplayName = "[1,2,3,4,5,6,7,8,9,10,11,12] = 78")]        
         public void CalculatorService_Returns_SumOfValues(int[] numbers, int expected)
         { 
-            CalculatorService service = new CalculatorService();
+            CalculatorService service = new();
             Assert.AreEqual(expected, service.AddNumbers(numbers));
         }
     }

@@ -3,7 +3,7 @@ using StringCalculator;
 public class Program
 {
     private static readonly int MAX_NUM_OF_VALUES_ALLOWED = int.MaxValue;
-    private static readonly string[] VALUE_DELIMITERS = new string[] { ",", "\\n" };
+    private static readonly string[] VALUE_DELIMITERS = [",", "\\n"];
     public static void Main(string[] args)
     {
         var serviceProvider = new ServiceCollection()

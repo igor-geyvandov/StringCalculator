@@ -24,8 +24,8 @@ namespace StringCalculator.Tests
         public void ParsingService_Returns_Numbers_With_Constrain(string input, int[] expected)
         {
             int maxNumOfValuesAllowed = 2;
-            string[] delimiters = new string[] { ",", "\n" };
-            ParsingService service = new ParsingService();
+            string[] delimiters = [",", "\n"];
+            ParsingService service = new();
             CollectionAssert.AreEqual(expected, service.ParseInput(input, delimiters, maxNumOfValuesAllowed));
         }
 
@@ -37,8 +37,8 @@ namespace StringCalculator.Tests
         public void ParsingService_Throws_Exception_When_Constrain_Exceeded(string input)
         {
             const int maxNumOfValuesAllowed = 2;
-            string[] delimiters = new string[] { ",", "\n" };
-            ParsingService service = new ParsingService();
+            string[] delimiters = [",", "\n"];
+            ParsingService service = new();
             Assert.ThrowsException<Exception>(() => service.ParseInput(input, delimiters, maxNumOfValuesAllowed));
         }
 
@@ -48,8 +48,8 @@ namespace StringCalculator.Tests
         public void ParsingService_Throws_Exception_When_Negative_Numbers_Provided(string input)
         {
             const int maxNumOfValuesAllowed = int.MaxValue;
-            string[] delimiters = new string[] { ",", "\n" };
-            ParsingService service = new ParsingService();
+            string[] delimiters = [",", "\n"];
+            ParsingService service = new();
             Assert.ThrowsException<Exception>(() => service.ParseInput(input, delimiters, maxNumOfValuesAllowed));
         }
 
@@ -62,8 +62,8 @@ namespace StringCalculator.Tests
         public void ParsingService_Returns_Numbers_Without_Constrain(string input, int[] expected)
         {
             const int maxNumOfValuesAllowed = int.MaxValue;
-            string[] delimiters = new string[] { ",", "\n" };
-            ParsingService service = new ParsingService();
+            string[] delimiters = [",", "\n"];
+            ParsingService service = new();
             CollectionAssert.AreEqual(expected, service.ParseInput(input, delimiters, maxNumOfValuesAllowed));
         }
 
@@ -74,8 +74,8 @@ namespace StringCalculator.Tests
         public void ParsingService_Returns_Numbers_While_Invalidating_Large_Numbers(string input, int[] expected)
         {
             const int maxNumOfValuesAllowed = int.MaxValue;
-            string[] delimiters = new string[] { ",", "\n" };
-            ParsingService service = new ParsingService();
+            string[] delimiters = [",", "\n"];
+            ParsingService service = new();
             CollectionAssert.AreEqual(expected, service.ParseInput(input, delimiters, maxNumOfValuesAllowed));
         }
     }

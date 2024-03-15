@@ -4,7 +4,7 @@
     {
         public int[] ParseInput(string input, string[] delimiters, int maxNumOfValuesAllowed)
         {
-            int[] intValues = { 0 };
+            int[] intValues = [0];
             if (!string.IsNullOrEmpty(input))
             {
                 string[] strValues = input.Split(delimiters, StringSplitOptions.TrimEntries);
