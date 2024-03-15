@@ -2,7 +2,7 @@
 using StringCalculator;
 public class Program
 {
-    private const int MAX_NUM_OF_VALUES_ALLOWED = 2;
+    private const int MAX_NUM_OF_VALUES_ALLOWED = int.MaxValue;
     private const string VALUE_DELIMITER = ",";
     public static void Main(string[] args)
     {
@@ -19,7 +19,7 @@ public class Program
             Console.WriteLine("Hello, I am a calculator that only supports an Add operation given a single formatted string :)");            
             while (true)
             {
-                Console.WriteLine(Environment.NewLine + $"Enter {MAX_NUM_OF_VALUES_ALLOWED} numbers using '{VALUE_DELIMITER}' delimiter...");
+                Console.WriteLine(Environment.NewLine + $"Enter up to {MAX_NUM_OF_VALUES_ALLOWED} numbers using '{VALUE_DELIMITER}' delimiter...");
                 string? input = Console.ReadLine();
                 if (input != null)
                 {
