@@ -20,13 +20,12 @@ namespace StringCalculator.Tests
         [DataRow("1,a", new int[] { 1, 0 }, DisplayName = "'1,a' = [1,0]")]
         [DataRow("1,aaa", new int[] { 1, 0 }, DisplayName = "'1,aaa' = [1,0]")]
         [DataRow("1,???", new int[] { 1, 0 }, DisplayName = "'1,???' = [1, 0]")]
-        public void ParsingService_Returns_SumOfValues(string input, int[] expected)
+        public void ParsingService_Returns_Numbers_With_Constrain(string input, int[] expected)
         {
             const int maxNumOfValuesAllowed = 2;
             ParsingService service = new ParsingService();
             CollectionAssert.AreEqual(expected, service.ParseInput(input, maxNumOfValuesAllowed));
         }
-
 
         [TestMethod]
         [DataRow("1,2,3", DisplayName = "'1,2,3' = exception thrown")]
@@ -38,6 +37,17 @@ namespace StringCalculator.Tests
             const int maxNumOfValuesAllowed = 2;
             ParsingService service = new ParsingService();
             Assert.ThrowsException<Exception>(() => service.ParseInput(input, maxNumOfValuesAllowed));
+        }
+
+        [TestMethod]
+        [DataRow("1,2,3,4", new int[] { 1,2,3,4 }, DisplayName = "'1,2,3,4' = [1,2,3,4]")]
+        [DataRow("1,2,3,4,5,6,7,8,9,10", new int[] { 1,2,3,4,5,6,7,8,9,10 }, DisplayName = "'1,2,3,4,5,6,7,8,9,10' = [1,2,3,4,5,6,7,8,9,10]")]
+        //[DataRow("a,b,c", new int[] { 0,0,0 }, DisplayName = "'a,b,c' = [0,0,0]")]
+        //[DataRow(" ,-,?", new int[] { 0,0,0 }, DisplayName = "' ,-,?' = [0,0,0]")]
+        public void ParsingService_Returns_Numbers_Without_Constrain(string input, int[] expected)
+        {
+            ParsingService service = new ParsingService();
+            CollectionAssert.AreEqual(expected, service.ParseInput(input));
         }
     }
 }

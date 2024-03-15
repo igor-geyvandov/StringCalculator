@@ -2,7 +2,7 @@
 {
     public class ParsingService : IParsingService
     {
-        public int[] ParseInput(string input, int maxNumOfValuesAllowed = 2, string delimiter = ",")
+        public int[] ParseInput(string input, int maxNumOfValuesAllowed = int.MaxValue, string delimiter = ",")
         {
             int[] intValues = { 0 };
             if (!string.IsNullOrEmpty(input))
